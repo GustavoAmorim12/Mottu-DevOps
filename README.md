@@ -1,5 +1,3 @@
-"# Mottu-DevOps" 
-
 🏍️ Moto-Flow – Sistema de Gestão de Motos API
 📋 Descrição da Solução
 --
@@ -155,8 +153,8 @@ az container create --resource-group rg-sprint3 --name sql-motoflow --image acrs
 az container create --resource-group rg-sprint3 --name moto-flow-main --image acrsprint3rm556999.azurecr.io/moto-flow-main:v1 --cpu 1 --memory 1.5 --ports 8080 --os-type Linux --ip-address Public --environment-variables DB_HOST=4.156.197.7 DB_USER=root DB_PASSWORD=senha123 DB_NAME=sprint3db --registry-login-server acrsprint3rm556999.azurecr.io --registry-username acrsprint3rm556999 --registry-password q2PcHsrvVkLx0HDnDWfqjBXWmQZsCGiHma69mqJugu+ACRDjCjsu
 ```
 
-
-CREATE
+--
+POST
 
 {
     "id": 6,
@@ -177,3 +175,27 @@ CREATE
       "tipo": "Scooter"
     }
 }
+
+
+PUT
+
+{
+    "id": 6,
+    "placa": "DEF2B56",
+    "modelo": {
+      "id": 2,
+      "nome": "Mottu-Cargo",
+      "tipo": "Scooter"
+    }
+}
+
+{
+    "id": 7,
+    "placa": "DEF2B57",
+    "modelo": {
+      "id": 2,
+      "nome": "Mottu-Cargo",
+      "tipo": "Scooter"
+    }
+}
+--
