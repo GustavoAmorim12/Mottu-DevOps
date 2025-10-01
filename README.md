@@ -2,7 +2,7 @@
 
 🏍️ Moto-Flow – Sistema de Gestão de Motos API
 📋 Descrição da Solução
-
+--
 O Moto-Flow é um sistema inteligente de controle e rastreamento de motos em pátios, desenvolvido para otimizar a entrada, saída, localização e gestão operacional.
 A solução é modular e escalável, podendo ser aplicada em diferentes tipos de pátios, desde operações logísticas até concessionárias.
 
@@ -13,9 +13,9 @@ Gestão de Motos: cadastro, atualização, listagem e exclusão
 Gestão de Operações: registro de operações de motos
 
 Banco MySQL: persistência de dados rodando em container no ACI
-
+--
 💼 Benefícios para o Negócio
-
+--
 Automação: elimina planilhas manuais e centraliza os dados
 
 Visibilidade: status das motos em tempo real
@@ -23,9 +23,9 @@ Visibilidade: status das motos em tempo real
 Escalabilidade: possibilidade de subir múltiplas instâncias no Azure
 
 Integração: API pronta para se integrar com sistemas externos
-
+--
 🏗️ Arquitetura da Solução
-
+--
 Fluxo de funcionamento:
 
 O código-fonte é versionado no GitHub.
@@ -41,9 +41,9 @@ Um container roda o MySQL.
 Outro container roda a API Moto-Flow e se conecta ao banco.
 
 O usuário acessa a API por meio do IP público do ACI.
-
+--
 📌 Recursos criados via script:
-
+--
 Resource Group
 
 Azure Container Registry (ACR)
@@ -51,8 +51,9 @@ Azure Container Registry (ACR)
 Azure Container Instance (ACI) para MySQL
 
 Azure Container Instance (ACI) para API
-
+--
 🚀 Passo a Passo para Deploy
+--
 Pré-requisitos
 
 Azure CLI instalado
@@ -60,14 +61,15 @@ Azure CLI instalado
 Docker instalado
 
 Conta no Azure
-
+--
 1. Clone do Repositório
+```
 git clone https://github.com/cahAmaral/Moto-Flow.git
 
 cd Moto-Flow-main
-
+```
 2. Build e Deploy
-
+```
 Execute os comandos (adaptados do script-devops.sh):
 
 az group create --name rg-sprint3 --location eastus
@@ -77,17 +79,17 @@ az acr create --resource-group rg-sprint3 --name acrsprint3rm556999 --sku Standa
 docker build -t moto-flow-main .
 docker tag moto-flow-main acrsprint3rm556999.azurecr.io/moto-flow-main:v1
 docker push acrsprint3rm556999.azurecr.io/moto-flow-main:v1
-
+```
 
 Banco de dados:
-
+```
 docker build -t sql-sprint3 ./sql-motoflow
 docker tag sql-sprint3 acrsprint3rm556999.azurecr.io/sql-motoflow:v1
 docker push acrsprint3rm556999.azurecr.io/sql-motoflow:v1
-
+```
 
 Criar containers no Azure:
-
+```
 az container create --resource-group rg-sprint3 --name sql-motoflow \
   --image acrsprint3rm556999.azurecr.io/sql-motoflow:v1 \
   --ports 3306 --cpu 1 --memory 1.5 \
@@ -97,21 +99,22 @@ az container create --resource-group rg-sprint3 --name moto-flow-main \
   --image acrsprint3rm556999.azurecr.io/moto-flow-main:v1 \
   --ports 8080 --cpu 1 --memory 1.5 --ip-address Public \
   --environment-variables DB_HOST=<IP_DO_MYSQL> DB_USER=root DB_PASSWORD=senha123 DB_NAME=sprint3db
-
+```
+--
 🔗 Acesso à API
-
+--
 http://20.241.140.250:8080/api/motos
-
+--
 🎥 Demonstração
-
+--
 Deploy do banco (ACI – MySQL)
 
 Deploy da API (ACI – Spring Boot)
 
 Teste do CRUD no endpoint /api/motos
-
+--
 ✅ Checklist de Entrega
-
+--
  API Dockerizada
 
  Imagens publicadas no Azure Container Registry
