@@ -3,8 +3,8 @@
 🏍️ Moto-Flow – Sistema de Gestão de Motos API
 📋 Descrição da Solução
 
-O Moto-Flow é uma API RESTful desenvolvida em Java Spring Boot que permite o gerenciamento de motos e operações relacionadas.
-A aplicação roda em containers Docker, publicados no Azure Container Registry (ACR) e executados no Azure Container Instances (ACI).
+O Moto-Flow é um sistema inteligente de controle e rastreamento de motos em pátios, desenvolvido para otimizar a entrada, saída, localização e gestão operacional.
+A solução é modular e escalável, podendo ser aplicada em diferentes tipos de pátios, desde operações logísticas até concessionárias.
 
 Funcionalidades
 
@@ -99,7 +99,7 @@ az container create --resource-group rg-sprint3 --name moto-flow-main \
 
 🔗 Acesso à API
 
-API: http://<IP-PUBLICO-API>:8080/api/motos
+http://20.241.140.250:8080/api/motos
 
 🎥 Demonstração
 
@@ -185,8 +185,6 @@ az container create --resource-group rg-sprint3 --name sql-motoflow --image acrs
 #CRIANDO CONTAINER DA API
 
 az container create --resource-group rg-sprint3 --name moto-flow-main --image acrsprint3rm556999.azurecr.io/moto-flow-main:v1 --cpu 1 --memory 1.5 --ports 8080 --os-type Linux --ip-address Public --environment-variables DB_HOST=4.156.197.7 DB_USER=root DB_PASSWORD=senha123 DB_NAME=sprint3db --registry-login-server acrsprint3rm556999.azurecr.io --registry-username acrsprint3rm556999 --registry-password q2PcHsrvVkLx0HDnDWfqjBXWmQZsCGiHma69mqJugu+ACRDjCjsu
-
-http://20.241.140.250:8080/api/motos
 
 CREATE
 
